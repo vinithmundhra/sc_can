@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="com.xmos.cdt.toolchain.87746209">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.87746209" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
@@ -153,8 +151,8 @@
 									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
 									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
 								</option>
-								<option id="com.xmos.c.compiler.option.include.paths.35674733" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath"/>
-								<option id="gnu.c.compiler.option.include.paths.78649779" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath"/>
+								<option id="com.xmos.c.compiler.option.include.paths.35674733" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths"/>
+								<option id="gnu.c.compiler.option.include.paths.78649779" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths"/>
 								<option id="com.xmos.xc.compiler.option.include.paths.351261798" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_DOC_PATH}/../target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;"/>
@@ -168,6 +166,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/app_can_error_inject/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/.settings}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.xc.compiler.input.94791526" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
 							</tool>
@@ -177,6 +176,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.c.compiler.input.c.1554865246" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
 							</tool>
@@ -186,6 +186,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.1096150368" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>
@@ -287,9 +288,9 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.98824769" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
@@ -433,8 +434,8 @@
 									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
 									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
 								</option>
-								<option id="com.xmos.c.compiler.option.include.paths.90865207" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath"/>
-								<option id="gnu.c.compiler.option.include.paths.3437365" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath"/>
+								<option id="com.xmos.c.compiler.option.include.paths.90865207" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths"/>
+								<option id="gnu.c.compiler.option.include.paths.3437365" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths"/>
 								<option id="com.xmos.xc.compiler.option.include.paths.916637180" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_DOC_PATH}/../target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_DOC_PATH}/../target/include/gcc&quot;"/>
@@ -448,6 +449,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/app_can_error_inject/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/.settings}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.xc.compiler.input.17416213" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
 							</tool>
@@ -457,6 +459,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.c.compiler.input.c.1550181997" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
 							</tool>
@@ -466,6 +469,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.1254382751" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>

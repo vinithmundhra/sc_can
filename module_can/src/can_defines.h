@@ -1,4 +1,4 @@
-#include "can_conf.h"
+#include "can_config.h"
 
 //Error defines
 #define  CAN_ERROR_RX_NONE   (0)
@@ -44,28 +44,6 @@
 #define S_STATUS    11    //The error status
 
 #define SYNC_SEG 1
-
-#ifndef PROP_SEG
-#error PROP_SEG is undefined.
-#else
-#if (PROP_SEG > 8)
-#error PROP_SEG must be from 1 to 8 TIME QUANTUM long.
-#endif
-#endif
-#ifndef PHASE_SEG1
-#error PHASE_SEG1 is undefined.
-#else
-#if (PHASE_SEG1 > 8)
-#error PHASE_SEG1 must be from 1 to 8 TIME QUANTUM long.
-#endif
-#endif
-#ifndef PHASE_SEG2
-#error PHASE_SEG2 is undefined.
-#else
-#if (PHASE_SEG2 < PHASE_SEG1)
-#error PHASE_SEG2 not be shorter then PHASE_SEG1.
-#endif
-#endif
 
 #define TOTAL_TIME (SYNC_SEG + PROP_SEG + PHASE_SEG1 + PHASE_SEG2)
 #define SAMPLE_TIME (SYNC_SEG + PROP_SEG + PHASE_SEG1)

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="com.xmos.cdt.toolchain.95519801">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.95519801" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
@@ -37,7 +35,7 @@
 					<folderInfo id="com.xmos.cdt.toolchain.95519801.1127281840" name="/" resourcePath="">
 						<toolChain id="com.xmos.cdt.toolchain.91257328" name="com.xmos.cdt.toolchain" superClass="com.xmos.cdt.toolchain">
 							<targetPlatform archList="all" binaryParser="com.xmos.cdt.core.XEBinaryParser" id="com.xmos.cdt.core.platform.61154993" isAbstract="false" osList="linux,win32,macosx" superClass="com.xmos.cdt.core.platform"/>
-							<builder arguments="CONFIG=Debug" id="com.xmos.cdt.builder.base.87762583" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
+							<builder appendEnvironment="true" arguments="CONFIG=Debug" environment="XTA_ENABLED=false|" id="com.xmos.cdt.builder.base.87762583" keepEnvironmentInBuildfile="false" managedBuildOn="false" superClass="com.xmos.cdt.builder.base">
 								<outputEntries>
 									<entry flags="VALUE_WORKSPACE_PATH" kind="outputPath" name="bin/Debug"/>
 								</outputEntries>
@@ -168,6 +166,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.xc.compiler.input.50003841" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
 							</tool>
@@ -177,6 +176,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.c.compiler.input.c.1640668510" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
 							</tool>
@@ -186,6 +186,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.266542263" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>
@@ -287,9 +288,9 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.18554383" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
@@ -448,6 +449,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.xc.compiler.input.6226838" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
 							</tool>
@@ -457,6 +459,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.c.compiler.input.c.2047616294" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
 							</tool>
@@ -466,6 +469,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_mutual_thread_comm}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_can/doc}&quot;"/>
 								</option>
 								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.958328260" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>

@@ -22,12 +22,12 @@
         <uri>git://github.com/xcore/sc_util.git</uri>
     </dependency>
     <description>CAN Protocol Component</description>
-    <docdir>doc</docdir>
+    <docdir>module_can/doc</docdir>
     <docdir>app_can_demo/doc_quickstart</docdir>
-    <exclude_dir>app_can_arbitrate</exclude_dir>
+    <exclude_dir>tests/app_can_arbitrate</exclude_dir>
     <exclude_dir>app_can_dummy_demo</exclude_dir>
-    <exclude_dir>app_can_error_inject</exclude_dir>
-    <exclude_dir>app_can_osc</exclude_dir>
+    <exclude_dir>tests/app_can_error_inject</exclude_dir>
+    <exclude_dir>tests/app_can_osc</exclude_dir>
     <exclude_dir>module_can_dummy</exclude_dir>
     <exclude_dir>app_xc1_firmware</exclude_dir>
     <location>git@github.com:xcore/sc_can</location>
