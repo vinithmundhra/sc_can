@@ -233,8 +233,7 @@ static int rx_success(RxTxFrame &r,
 #pragma unsafe arrays
 void can_server(can_ports &p,
                 server interface interface_can_rx i_rx,
-                server interface interface_can_tx i_tx,
-                server interface interface_can_client i_client)
+                server interface interface_can_tx_client i_tx)
 {
   can_frame rx_buf[CAN_FRAME_BUFFER_SIZE];
   can_frame tx_buf[CAN_FRAME_BUFFER_SIZE];
@@ -309,7 +308,7 @@ void can_server(can_ports &p,
 
             if(rx_succ == CAN_RX_SUCCESS)
             {
-              i_rx.data_ready();
+              i_rx.can_rx_frame_ready();
             }
           } //if (RXTX_RET_TO_ERROR_TYPE(e) == CAN_ERROR_RX_NONE)
           else
@@ -325,7 +324,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_rx.data_get(can_frame &frm) -> unsigned int err:
+      case i_rx.can_rx_frame(can_frame &frm) -> unsigned int err:
       {
         if (rx_depth <= 0)
         {
@@ -337,15 +336,21 @@ void can_server(can_ports &p,
         memcpy(&frm, &rx_buf[rx_fifo_read], sizeof(can_frame));
         rx_fifo_read = (rx_fifo_read + 1) % CAN_FRAME_BUFFER_SIZE;
         rx_depth--;
-        if (rx_depth) i_rx.data_ready();
-        err = 0;
-
+        if(rx_depth)
+        {
+          i_rx.can_rx_frame_ready();
+          err = rx_depth;
+        }
+        else
+        {
+          err = 0;
+        }
         break;
       }//case i_rx.data_get(can_frame &frm) -> unsigned int err:
 
       /*=====================================================================*/
 
-      case i_rx.has_data() -> unsigned int depth:
+      case i_rx.can_rx_entries() -> unsigned int depth:
       {
         depth = rx_depth;
         break;
@@ -353,7 +358,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_rx.get_err_count() -> unsigned int count:
+      case i_rx.can_rx_err_count() -> unsigned int count:
       {
         count = rx_err_count;
         break;
@@ -379,7 +384,7 @@ void can_server(can_ports &p,
        * ---------------------------------------------------------------------
        */
 
-      case i_tx.data_put(can_frame &frm) -> unsigned int err:
+      case i_tx.can_frame_send(can_frame &frm) -> unsigned int err:
       {
         int e = 0;
         err = 0;
@@ -436,7 +441,7 @@ void can_server(can_ports &p,
             tx_err_count--;
           if(error_status == CAN_STATE_PASSIVE)
             tx_back_on += 8*CAN_CLOCK_DIVIDE*2*50;
-          i_tx.data_sent();
+          i_tx.can_frame_sent();
           break;
         }//if CAN_ERROR_TX_NONE:
         else
@@ -454,7 +459,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.has_data() -> unsigned int depth:
+      case i_tx.can_tx_entries() -> unsigned int depth:
       {
         depth = tx_depth;
         break;
@@ -462,7 +467,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.get_err_count() -> unsigned int count:
+      case i_tx.can_tx_err_count() -> unsigned int count:
       {
         count = tx_err_count;
         break;
@@ -476,7 +481,7 @@ void can_server(can_ports &p,
        * ---------------------------------------------------------------------
        */
 
-      case i_client.reset():
+      case i_tx.can_reset():
       {
         error_status = CAN_STATE_ACTIVE;
         rx_fifo_read = 0; rx_fifo_write = 0;
@@ -493,7 +498,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_client.get_status() -> unsigned status:
+      case i_tx.can_get_status() -> unsigned status:
       {
         status = error_status;
         break;
@@ -501,7 +506,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_client.add_filter(unsigned id) -> unsigned result:
+      case i_tx.can_add_filter(unsigned id) -> unsigned result:
       {
         if(message_filter_count < CAN_MAX_FILTER_SIZE)
         {
@@ -518,7 +523,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_client.remove_filter(unsigned id) -> unsigned result:
+      case i_tx.can_remove_filter(unsigned id) -> unsigned result:
       {
         unsigned index=0;
         unsigned found=0;
@@ -546,6 +551,19 @@ void can_server(can_ports &p,
         {
           result = CAN_FILTER_REMOVE_FAIL;
         }
+        break;
+      }//case i_client.remove_filter(unsigned id) -> unsigned result:
+
+      /*=====================================================================*/
+
+      case i_tx.can_remove_all_filters() -> unsigned result:
+      {
+        result = CAN_FILTER_REMOVE_SUCCESS;
+        for(int index = 0; index < message_filter_count; index++)
+        {
+          message_filters[index] = 0;
+        }
+        message_filter_count = 0;
         break;
       }//case i_client.remove_filter(unsigned id) -> unsigned result:
 

@@ -11,10 +11,10 @@ Key Features
 
    * Baud Rates up to 1Mbps,
    * Support for extended identifier(29-bit) for PHY layer,
-   * Fully CAN 2.0A and 2.0B compatable.
+   * Fully CAN 2.0A and 2.0B compatible.
    * Includes a dummy CAN server for testing without hardware.
    
-A demo appliction is included.
+A demo application is included.
 
 Known Issues
 ============
@@ -24,10 +24,11 @@ None
 Support
 =======
 
-Issues may be submitted via the Issues tab in this github repo. Response to any issues submitted as at the discretion of the maintainer for this line.
+Issues may be submitted via xCORE.com.
 
 Required software (dependencies)
 ================================
 
-  * sc_util (git://github.com/xcore/sc_util.git)
-
+All required dependencies will be downloaded automatically when
+an application in this repository is imported into the project 
+workspace using xTIMEcomposer Studio.

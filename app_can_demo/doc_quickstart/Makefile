@@ -1,6 +1,6 @@
 all: html
 
-SPHINX_PROJECT_NAME = CAN Bus Demo Quickstart Guide
+SPHINX_PROJECT_NAME = CAN bus demo quick start guide
 VERSION = 0.1
 SOURCE_INCLUDE_DIRS = ../app_can_demo
 XDOC_DIR ?= ../../../xdoc
