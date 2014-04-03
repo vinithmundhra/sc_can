@@ -108,8 +108,8 @@ static inline void frame_to_rxtx(can_frame &f, RxTxFrame &r)
   r.tx_extended = f.extended;
   r.tx_remote = f.remote;
   r.tx_dlc = f.dlc;
-  r.tx_DATA[0] = (f.data, unsigned[])[0];
-  r.tx_DATA[1] = (f.data, unsigned[])[1];
+  r.tx_DATA[0] = (unsigned)(f.data[0]);
+  r.tx_DATA[1] = (unsigned)(f.data[1]);
 }
 /*============================================================================*/
 #pragma unsafe arrays
@@ -126,8 +126,8 @@ static inline void rxtx_to_frame(can_frame &f, RxTxFrame &r)
   {
     f.id = r.rx_id_std;
   }
-  (f.data, unsigned[])[0] = r.rx_DATA[0];
-  (f.data, unsigned[])[1] = r.rx_DATA[1];
+  f.data[0] = r.rx_DATA[0];
+  f.data[1] = r.rx_DATA[1];
 }
 /*============================================================================*/
 static void adjust_successful_receive_error_counter(unsigned &receive_error_counter)
@@ -233,7 +233,8 @@ static int rx_success(RxTxFrame &r,
 #pragma unsafe arrays
 void can_server(can_ports &p,
                 server interface interface_can_rx i_rx,
-                server interface interface_can_tx_client i_tx)
+                server interface interface_can_tx i_tx,
+                server interface interface_can_client i_client)
 {
   can_frame rx_buf[CAN_FRAME_BUFFER_SIZE];
   can_frame tx_buf[CAN_FRAME_BUFFER_SIZE];
@@ -481,7 +482,7 @@ void can_server(can_ports &p,
        * ---------------------------------------------------------------------
        */
 
-      case i_tx.can_reset():
+      case i_client.can_reset():
       {
         error_status = CAN_STATE_ACTIVE;
         rx_fifo_read = 0; rx_fifo_write = 0;
@@ -498,7 +499,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.can_get_status() -> unsigned status:
+      case i_client.can_get_status() -> unsigned status:
       {
         status = error_status;
         break;
@@ -506,7 +507,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.can_add_filter(unsigned id) -> unsigned result:
+      case i_client.can_add_filter(unsigned id) -> unsigned result:
       {
         if(message_filter_count < CAN_MAX_FILTER_SIZE)
         {
@@ -523,7 +524,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.can_remove_filter(unsigned id) -> unsigned result:
+      case i_client.can_remove_filter(unsigned id) -> unsigned result:
       {
         unsigned index=0;
         unsigned found=0;
@@ -556,7 +557,7 @@ void can_server(can_ports &p,
 
       /*=====================================================================*/
 
-      case i_tx.can_remove_all_filters() -> unsigned result:
+      case i_client.can_remove_all_filters() -> unsigned result:
       {
         result = CAN_FILTER_REMOVE_SUCCESS;
         for(int index = 0; index < message_filter_count; index++)

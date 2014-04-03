@@ -18,7 +18,11 @@ on tile[1]: port spare_3 = XS1_PORT_4E;
 
 const unsigned size[2] = { 0x800, 0x20000000 };
 
-void can_tx(chanend c_server, chanend c_internal, int master_node, unsigned seed) {
+void can_tx(client interface interface_can_rx can_rx,
+            client interface interface_can_tx_client can_tx,
+            chanend c_internal,
+            int master_node,
+            unsigned seed) {
   can_frame frm;
   timer t;
   unsigned now;
@@ -35,7 +39,7 @@ void can_tx(chanend c_server, chanend c_internal, int master_node, unsigned seed
     c_internal :> now;
     t when timerafter(now):> int;
 
-    if (can_send_frame(c_server, frm) == CAN_TX_FAIL) {
+    if (can_tx.can_frame_send(frm) == CAN_TX_FAIL) {
       can_utils_print_frame(frm, "tx: ");
       printf("error in sending frame\n");
     } else {
@@ -53,12 +57,15 @@ void printbinln(int x){
   printstrln("");
 }
 
-void can_rx(chanend c_server, chanend c_master, chanend c_slave) {
+void can_rx(client interface interface_can_rx can_rx,
+            client interface interface_can_tx_client can_tx,
+            chanend c_master,
+            chanend c_slave) {
 
   unsigned time;
   can_frame oldest;
   can_frame newest;
-  can_frame frm;
+  //can_frame frm;
   while(1){
     unsigned o_id;
     unsigned n_id;
@@ -78,8 +85,9 @@ void can_rx(chanend c_server, chanend c_master, chanend c_slave) {
     //recieve both of the frames
     t :> now;
     select {
-    	case can_rx_frame(c_server, oldest):{
-          break;
+    	case can_rx.can_rx_frame_ready(): {
+        can_rx.can_rx_frame(oldest);
+        break;
     	}
     	case t when timerafter (now+100000000):> now:{
     	  printstrln("bad rx of dominant frame");
@@ -89,16 +97,19 @@ void can_rx(chanend c_server, chanend c_master, chanend c_slave) {
     }
     t :> now;
     select {
-    	case can_rx_frame(c_server, newest):{
-    		break;
-    	}
+
+      case can_rx.can_rx_frame_ready(): {
+        can_rx.can_rx_frame(newest);
+        break;
+      }
+
     	case t when timerafter (now+1000000000):> int:{
     	  printstrln("bad rx of recessive frame");
     	  _Exit(1);
   		  break;
     	}
     }
-    if(can_rx_entries(c_server)){
+    if(can_rx.can_rx_entries()){
   	  printstrln("recieved too many frames");
   	  _Exit(1);
     }
@@ -131,30 +142,38 @@ void xscope_user_init(void) {
 }
 
 int main() {
-  chan c_app_0;
-  chan c_app_1;
-  chan c_app_3;
+  interface interface_can_rx can_rx_0;
+  interface interface_can_tx_client can_tx_0;
+  interface interface_can_rx can_rx_1;
+  interface interface_can_tx_client can_tx_1;
+  interface interface_can_rx can_rx_3;
+  interface interface_can_tx_client can_tx_3;
+
   chan c_master;
   chan c_slave;
+
   par {
-    on tile[0]: can_tx(c_app_0, c_master, 1, 0x12345678);
-    on tile[0]: can_tx(c_app_1, c_slave,  0, 0x87654321);
+    on tile[0]: can_tx(can_rx_0, can_tx_0, c_master, 1, 0x12345678);
+    on tile[0]: can_tx(can_rx_1, can_tx_1, c_slave,  0, 0x87654321);
     on tile[0]: {
       spare_0 <: 0;
       p_0.tx <: 1;
-      can_server(p_0, c_app_0);
+      can_server(p_0, can_rx_0, can_tx_0);
     }
     on tile[0]: {
       spare_1 <: 0;
       p_1.tx <: 1;
-      can_server(p_1, c_app_1);
+      can_server(p_1, can_rx_1, can_tx_1);
     }
     on tile[0]: par(int i=0;i<4;i++)while (1);
-    on tile[1]: can_rx(c_app_3, c_master, c_slave);
+
+
+
+    on tile[1]: can_rx(can_rx_3, can_tx_3, c_master, c_slave);
     on tile[1]: {
       spare_3 <: 0;
       p_3.tx <: 1;
-      can_server(p_3, c_app_3);
+      can_server(p_3, can_rx_3, can_tx_3);
     }
     on tile[1]: par(int i=0;i<6;i++)while (1);
   }

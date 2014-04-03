@@ -85,7 +85,7 @@ typedef interface interface_can_rx {
 
 }interface_can_rx;
 
-typedef interface interface_can_tx_client {
+typedef interface interface_can_tx {
 
   /**
    * This is a notification event. It notifies that a CAN frame has been
@@ -117,6 +117,10 @@ typedef interface interface_can_tx_client {
    * \return number of transmit errors.
    */
   unsigned int can_tx_err_count();
+
+}interface_can_tx;
+
+typedef interface interface_can_client {
 
   /**
    * This resets the transciever to the state it would be when first switched
@@ -157,11 +161,12 @@ typedef interface interface_can_tx_client {
    */
   unsigned can_remove_all_filters();
 
-}interface_can_tx_client;
+}interface_can_client;
 
 void can_server(can_ports &p,
                 server interface interface_can_rx i_rx,
-                server interface interface_can_tx_client i_tx);
+                server interface interface_can_tx i_tx,
+                server interface interface_can_client i_client);
 #endif
 
 #endif /* CAN_H_ */

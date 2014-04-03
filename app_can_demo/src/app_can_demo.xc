@@ -9,7 +9,8 @@ on tile[0]: port shutdown = CAN_RS_TRIANGLE_SLOT_PORT;
 
 /*==========================================================================*/
 void application(client interface interface_can_rx can_rx,
-                 client interface interface_can_tx_client can_tx)
+                 client interface interface_can_tx can_tx,
+                 client interface interface_can_client can_client)
 {
   timer t;
   unsigned now, seed = 0x12345678;
@@ -60,15 +61,16 @@ void xscope_user_init(void)
 int main()
 {
   interface interface_can_rx can_rx;
-  interface interface_can_tx_client can_tx;
+  interface interface_can_tx can_tx;
+  interface interface_can_client can_client;
 
   par
   {
-    on tile[0]: application(can_rx, can_tx);
+    on tile[0]: application(can_rx, can_tx, can_client);
     on tile[0]:
     {
       shutdown <: 0;
-      can_server(p, can_rx, can_tx);
+      can_server(p, can_rx, can_tx, can_client);
     }
   }//par
   return 0;
